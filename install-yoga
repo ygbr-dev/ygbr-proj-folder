@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# file install untuk komputer pribadi dan kerjaan menggunakan 
+# versi 0.01
+pil=("Install Aplikasi" "Install Settingan")
+folins="$HOME/install/sjy-linux-desk"
+echo "Masukkan pilihan : "
+select pilihan in "${pil[@]}" Quit
+do
+    case $pilihan in
+        "Install Aplikasi")
+            echo "Sedang menginstall aplikasi kantor...."
+            sudo apt install htop zsh 
+            ;;
+        "Install Settingan")
+            echo "Menginstall settingan...."
+            cd $HOME
+            mkdir install && cd install
+            git clone "https://github.com/ygbr-dev/sjy-linux-desk.git"
+            cp "$folins/*.ttf" /user/share/fonts/
+            cp -r $folins/.zshrc $folins.tmux.conf $folins.putty $HOME
+            echo "Selesai"
+            ;;
+        "Quit")
+            echo "Selesai"
+            break;;
+        *)
+            echo "Pilih yang benar"
+    esac
+    done
+
