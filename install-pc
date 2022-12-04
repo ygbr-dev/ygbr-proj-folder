@@ -10,7 +10,11 @@ do
     case $pilihan in
         "Install Aplikasi")
             echo "Sedang menginstall aplikasi kantor...."
-            sudo apt install htop zsh 
+            sudo apt update && sudo apt dist-upgrade -y
+            sudo apt install -y curl htop zsh tmux ttf-mscorefonts-installer putty 
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P $HOME/Download
+            wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb -P $HOME/Download
+            
             ;;
         "Install Settingan")
             echo "Menginstall settingan...."
@@ -18,13 +22,13 @@ do
             mkdir install && cd install
             git clone "https://github.com/ygbr-dev/sjy-linux-desk.git"
             cp "$folins/*.ttf" /user/share/fonts/
-            cp -r $folins/.zshrc $folins.tmux.conf $folins.putty $HOME
+            cp -r $folins/.zshrc $folins/.tmux.conf $folins/.putty $HOME
             echo "Selesai"
             ;;
         "Quit")
             echo "Selesai"
             break;;
-        *)
+            *)
             echo "Pilih yang benar"
     esac
     done
